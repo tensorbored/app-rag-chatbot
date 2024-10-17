@@ -4,10 +4,10 @@
 This Streamlit app is designed to chat with users based on uploaded pdf/url using RAG (Retrieval Augmented Generation) approach and refined query to keep track of context.
 
 ## Run App Online
-Link: 
+Link: https://app-rag-chatbot.streamlit.app/
 
 ## Screenshots
-![img.png](assets/rag-qa-app-screenshot.png)
+![img.png](assets/app-rag-chatbot-screenshot.png)
 
 ## Set-up
 1. To get started, first create an API_KEY from here: https://console.groq.com/keys. Then update the `GROQ_API_KEY` in the app text input with newly generated API_KEY. 
