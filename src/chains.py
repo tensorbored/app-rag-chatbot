@@ -6,9 +6,6 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.vectorstores import InMemoryVectorStore
 # from langchain_chroma import Chroma
-from langchain_core.messages import SystemMessage, trim_messages
-
-
 
 def load_document(uploaded_files):
     ## Process uploaded PDF's
@@ -62,13 +59,3 @@ def create_vector_db(st):
             elif "vectors" not in st.session_state:
                 st.session_state.vectors=create_vector_embedding(documents=st.session_state.documents)
                 st.write("Vector Database is ready")
-
-trimmer = trim_messages(
-token_counter=len,
-max_tokens=10,
-strategy="last",
-# token_counter=llm,
-include_system=True,
-allow_partial=False,
-start_on="human",
-)

@@ -8,12 +8,14 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_groq import ChatGroq
 from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.runnables import RunnablePassthrough
 import os
 from langchain_core.output_parsers import StrOutputParser
 from operator import itemgetter
 from src.chains import create_vector_embedding, load_document, load_url
-from src.chains import clear_session_state_documents_vectors, create_vector_db, trimmer
+from src.chains import clear_session_state_documents_vectors, create_vector_db
 from src.prompts import contextualize_q_prompt, qa_prompt
+from langchain_core.messages import SystemMessage, trim_messages
 
 st.markdown(
     """
@@ -39,8 +41,7 @@ def main():
         api_key=st.text_input("Enter your Groq API key:",type="password",placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
    
-    # try:
-    if True:
+    try:
         ## Check if groq api key is provided
         if api_key:
             a=0
@@ -85,6 +86,16 @@ def main():
                 retriever = st.session_state.vectors.as_retriever() 
 
                 history_aware_retriever=create_history_aware_retriever(llm,retriever,contextualize_q_prompt)
+
+                trimmer = trim_messages(
+                    token_counter=len,
+                    max_tokens=10,
+                    strategy="last",
+                    # token_counter=llm,
+                    include_system=True,
+                    allow_partial=False,
+                    start_on="human",
+                    )
 
                 #  question_answer_chain=create_stuff_documents_chain(llm,qa_prompt)
                 question_answer_chain = qa_prompt | llm | StrOutputParser()
@@ -138,10 +149,8 @@ def main():
             with st.sidebar:
                 st.warning("Please enter the Groq API Key")
     
-    # except Exception as e:
-    #     st.error(f"An Error Occurred: {e}")
-    #     print("------error--------------")
-    #     print(e)
+    except Exception as e:
+        st.error(f"An Error Occurred: {e}")
 
 if __name__ == "__main__":
     main()
