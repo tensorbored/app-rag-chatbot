@@ -14,7 +14,7 @@ def load_document(uploaded_files):
     ## Process uploaded PDF's
     documents=[]
     for uploaded_file in uploaded_files:
-        temppdf=f"./tmp/temp.pdf"
+        temppdf=f"./assets/temp.pdf"
         with open(temppdf,"wb") as file:
             file.write(uploaded_file.getvalue())
             # file_name=uploaded_file.name

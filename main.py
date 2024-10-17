@@ -113,8 +113,8 @@ def main():
 
                 if a==1:
                     m="New data loaded. You can now ask questions regarding it."
-                    st.chat_message("assistant").info(m)
                     session_history.add_ai_message(m)
+                    st.chat_message("assistant").info(m)
                     a=0
 
                 user_input = st.chat_input("Your question:")
