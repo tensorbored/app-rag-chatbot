@@ -15,7 +15,7 @@ from operator import itemgetter
 from src.chains import create_vector_embedding, load_document, load_url
 from src.chains import clear_session_state_documents_vectors, create_vector_db
 from src.prompts import contextualize_q_prompt, qa_prompt
-from langchain_core.messages import SystemMessage, trim_messages
+from langchain_core.messages import SystemMessage #, trim_messages
 
 st.markdown(
     """
@@ -115,7 +115,7 @@ def main():
                     )
 
                 session_history=get_session_history(session_id)
-                session_history.messages=trimmer.invoke(session_history.messages)
+                # session_history.messages=trimmer.invoke(session_history.messages)
 
                 if len(session_history.messages) == 0:
                     session_history.add_ai_message("How can I help you?")
