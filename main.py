@@ -39,7 +39,8 @@ def main():
         api_key=st.text_input("Enter your Groq API key:",type="password",placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
    
-    try:
+    # try:
+    if True:
         ## Check if groq api key is provided
         if api_key:
             a=0
@@ -107,14 +108,14 @@ def main():
 
                 if len(session_history.messages) == 0:
                     session_history.add_ai_message("How can I help you?")
-                    # print("No msg")
+                    print("No msg")
                 for msg in session_history.messages:
                     st.chat_message(msg.type).write(msg.content)
 
                 if a==1:
                     m="New data loaded. You can now ask questions regarding it."
-                    session_history.add_ai_message(m)
                     st.chat_message("assistant").info(m)
+                    session_history.add_ai_message(m)                    
                     a=0
 
                 user_input = st.chat_input("Your question:")
@@ -137,8 +138,10 @@ def main():
             with st.sidebar:
                 st.warning("Please enter the Groq API Key")
     
-    except Exception as e:
-        st.error(f"An Error Occurred: {e}")
+    # except Exception as e:
+    #     st.error(f"An Error Occurred: {e}")
+    #     print("------error--------------")
+    #     print(e)
 
 if __name__ == "__main__":
     main()
