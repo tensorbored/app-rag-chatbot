@@ -6,6 +6,9 @@ This Streamlit app is designed to chat with users based on uploaded pdf/url usin
 ## Run App Online
 Link: https://chat-with-docs-chatbot.streamlit.app/
 
+## App Live Testing
+![gif.gif](assets/app-rag-chatbot-gif.gif)
+
 ## Screenshots
 ![img.png](assets/app-rag-chatbot-screenshot.png)
 
