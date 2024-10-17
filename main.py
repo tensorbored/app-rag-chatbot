@@ -87,15 +87,15 @@ def main():
 
                 history_aware_retriever=create_history_aware_retriever(llm,retriever,contextualize_q_prompt)
 
-                trimmer = trim_messages(
-                    token_counter=len,
-                    max_tokens=10,
-                    strategy="last",
-                    # token_counter=llm,
-                    include_system=True,
-                    allow_partial=False,
-                    start_on="human",
-                    )
+                # trimmer = trim_messages(
+                #     token_counter=len,
+                #     max_tokens=10,
+                #     strategy="last",
+                #     # token_counter=llm,
+                #     include_system=True,
+                #     allow_partial=False,
+                #     start_on="human",
+                #     )
 
                 #  question_answer_chain=create_stuff_documents_chain(llm,qa_prompt)
                 question_answer_chain = qa_prompt | llm | StrOutputParser()
